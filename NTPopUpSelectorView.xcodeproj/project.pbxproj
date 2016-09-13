@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AA245DB1D8810AC004E9B15 /* NTPopUpSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA245DA1D8810AC004E9B15 /* NTPopUpSelectorView.m */; };
 		6ADCFB0E1D87F345003B2283 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCFB0D1D87F345003B2283 /* main.m */; };
 		6ADCFB111D87F345003B2283 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCFB101D87F345003B2283 /* AppDelegate.m */; };
 		6ADCFB141D87F345003B2283 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCFB131D87F345003B2283 /* ViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6AA245D91D8810AC004E9B15 /* NTPopUpSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPopUpSelectorView.h; sourceTree = "<group>"; };
+		6AA245DA1D8810AC004E9B15 /* NTPopUpSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPopUpSelectorView.m; sourceTree = "<group>"; };
 		6ADCFB091D87F345003B2283 /* NTPopUpSelectorView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTPopUpSelectorView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ADCFB0D1D87F345003B2283 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6ADCFB0F1D87F345003B2283 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,6 +42,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6AA245D81D881095004E9B15 /* SelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				6AA245D91D8810AC004E9B15 /* NTPopUpSelectorView.h */,
+				6AA245DA1D8810AC004E9B15 /* NTPopUpSelectorView.m */,
+			);
+			path = SelectorView;
+			sourceTree = "<group>";
+		};
 		6ADCFB001D87F345003B2283 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +70,7 @@
 		6ADCFB0B1D87F345003B2283 /* NTPopUpSelectorView */ = {
 			isa = PBXGroup;
 			children = (
+				6AA245D81D881095004E9B15 /* SelectorView */,
 				6ADCFB0F1D87F345003B2283 /* AppDelegate.h */,
 				6ADCFB101D87F345003B2283 /* AppDelegate.m */,
 				6ADCFB121D87F345003B2283 /* ViewController.h */,
@@ -151,6 +164,7 @@
 			files = (
 				6ADCFB141D87F345003B2283 /* ViewController.m in Sources */,
 				6ADCFB111D87F345003B2283 /* AppDelegate.m in Sources */,
+				6AA245DB1D8810AC004E9B15 /* NTPopUpSelectorView.m in Sources */,
 				6ADCFB0E1D87F345003B2283 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +314,7 @@
 				6ADCFB221D87F345003B2283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
