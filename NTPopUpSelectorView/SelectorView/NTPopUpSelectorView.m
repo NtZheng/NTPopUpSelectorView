@@ -34,6 +34,7 @@
 - (instancetype)initWithBubbleFrame :(CGRect)frame {
     if (self = [super init]) {
         bubbleFrame = frame;
+        self.clipsToBounds = YES;
         // 注意添加顺序
         [self addSubview:self.maskView];
         [self addSubview:self.bubbleImageView];
@@ -90,7 +91,12 @@
     }
     NSMutableDictionary *data = self.dataArray[indexPath.row];
     cell.textLabel.text = data[NTPopUpSelectorViewOptionText];
-    cell.imageView.image = [UIImage imageNamed:data[NTPopUpSelectorViewOptionImage]];
+    if (data[NTPopUpSelectorViewOptionImage] == nil || ((NSString *)data[NTPopUpSelectorViewImageName]).length == 0) {
+        
+    } else {
+        cell.imageView.image = [UIImage imageNamed:data[NTPopUpSelectorViewOptionImage]];
+    }
+    
     
     return cell;
 }
@@ -107,7 +113,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return (bubbleFrame.size.height - bubbleFrame.size.height * NTArrowAndTotalRate) / self.dataArray.count;
 }
-
 
 #pragma mark - methods
 - (void)clickMaskAction: (UIView *)maskView {
@@ -129,6 +134,19 @@
     dic[NTPopUpSelectorViewOptionText] = text;
     dic[NTPopUpSelectorViewImageName] = imageName;
     [self.dataArray addObject:dic];
+}
+
+- (void)showSelectorViewWithAnimationInView :(UIView *)view frame :(CGRect)frame {
+    
+    self.bubbleImageView.frame = CGRectMake(bubbleFrame.origin.x, bubbleFrame.origin.y, 0, 0);
+    
+    [UIView animateWithDuration:2.0f animations:^{
+        self.bubbleImageView.frame = bubbleFrame;
+    } completion:^(BOOL finished) {
+        
+    }];
+    self.frame = frame;
+    [view addSubview:self];
 }
 
 @end

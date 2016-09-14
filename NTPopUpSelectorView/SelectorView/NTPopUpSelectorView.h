@@ -35,4 +35,14 @@ typedef void(^ClickMaskBlock)();
  */
 - (void)addOptionWihtText :(NSString *)text andImage :(NSString *)imageName;
 
+/**
+ *
+ *  Show operation
+ *
+ *  @param view                 父视图
+ *  @param frame                在父视图中的位置
+ *
+ */
+- (void)showSelectorViewWithAnimationInView :(UIView *)view frame :(CGRect)frame;
+
 @end
