@@ -10,4 +10,6 @@
 
 @interface NTPopUpSelectorTableViewCell : UITableViewCell
 
++ (NTPopUpSelectorTableViewCell *)popUpSelectorTableViewCellWithRowHeight :(CGFloat) height style :(UITableViewCellStyle)style reuseIdentifier :(NSString *)reuseIdentifier isLastOne :(BOOL)isLastOne;
+
 @end

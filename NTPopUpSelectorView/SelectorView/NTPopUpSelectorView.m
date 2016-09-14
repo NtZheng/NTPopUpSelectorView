@@ -7,6 +7,7 @@
 //
 
 #import "NTPopUpSelectorView.h"
+#import "NTPopUpSelectorTableViewCell.h"
 
 #define NTPopUpSelectorViewImageName @"popUpSelectorView"
 #define NTPopUpSelectorViewOptionText @"text"
@@ -44,7 +45,7 @@
 - (UIView *)maskView {
     if (_maskView == nil) {
         _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        _maskView.backgroundColor = [UIColor redColor];
+        _maskView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.1];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMaskAction:)];
         [_maskView addGestureRecognizer:tap];
     }
@@ -64,6 +65,7 @@
 - (UITableView *)tableView {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NTArrowAndTotalRate * bubbleFrame.size.height, bubbleFrame.size.width, bubbleFrame.size.height - NTArrowAndTotalRate * bubbleFrame.size.height) style:UITableViewStylePlain];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -80,10 +82,11 @@
 
 #pragma mark - dataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"NTPopUpSelectorViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    NTPopUpSelectorTableViewCell *cell;
+    if (indexPath.row == (self.dataArray.count - 1)) {
+        cell = [NTPopUpSelectorTableViewCell popUpSelectorTableViewCellWithRowHeight:(bubbleFrame.size.height - bubbleFrame.size.height * NTArrowAndTotalRate) / self.dataArray.count style:UITableViewCellStyleDefault reuseIdentifier:nil isLastOne:YES];
+    } else {
+        cell = [NTPopUpSelectorTableViewCell popUpSelectorTableViewCellWithRowHeight:(bubbleFrame.size.height - bubbleFrame.size.height * NTArrowAndTotalRate) / self.dataArray.count style:UITableViewCellStyleDefault reuseIdentifier:nil isLastOne:NO];
     }
     NSMutableDictionary *data = self.dataArray[indexPath.row];
     cell.textLabel.text = data[NTPopUpSelectorViewOptionText];
@@ -108,7 +111,7 @@
 
 #pragma mark - methods
 - (void)clickMaskAction: (UIView *)maskView {
-    NSLog(@"33");
+    
 }
 
 #pragma mark - API
