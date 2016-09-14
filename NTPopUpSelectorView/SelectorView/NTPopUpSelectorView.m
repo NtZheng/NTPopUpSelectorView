@@ -8,65 +8,124 @@
 
 #import "NTPopUpSelectorView.h"
 
+#define NTPopUpSelectorViewImageName @"popUpSelectorView"
+#define NTPopUpSelectorViewOptionText @"text"
+#define NTPopUpSelectorViewOptionImage @"image"
+#define NTArrowAndTotalRate 0.11
+
 @interface NTPopUpSelectorView() <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIImageView *bubbleImageView;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) ClickOptionBlock clickOptionBlock;
+@property (nonatomic, copy) ClickMaskBlock clickMaskBlock;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
 @implementation NTPopUpSelectorView
 
-- (instancetype)init {
+{
+    CGRect bubbleFrame;
+}
+
+- (instancetype)initWithBubbleFrame :(CGRect)frame {
     if (self = [super init]) {
-        
+        bubbleFrame = frame;
+        // 注意添加顺序
+        [self addSubview:self.maskView];
+        [self addSubview:self.bubbleImageView];
     }
     return self;
 }
 
 #pragma mark - 懒加载
-- (UIImageView *)bubbleImageView {
-    if (_bubbleImageView == nil) {
-        
-    }
-    return _bubbleImageView;
-}
-
 - (UIView *)maskView {
     if (_maskView == nil) {
-        
+        _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        _maskView.backgroundColor = [UIColor redColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMaskAction:)];
+        [_maskView addGestureRecognizer:tap];
     }
     return _maskView;
 }
 
+- (UIImageView *)bubbleImageView {
+    if (_bubbleImageView == nil) {
+        _bubbleImageView = [[UIImageView alloc]initWithFrame:bubbleFrame];
+        _bubbleImageView.image = [UIImage imageNamed:NTPopUpSelectorViewImageName];
+        [_bubbleImageView addSubview:self.tableView];
+        _bubbleImageView.userInteractionEnabled = YES;
+    }
+    return _bubbleImageView;
+}
+
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 10, 10) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NTArrowAndTotalRate * bubbleFrame.size.height, bubbleFrame.size.width, bubbleFrame.size.height - NTArrowAndTotalRate * bubbleFrame.size.height) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
     }
     return _tableView;
+}
+
+- (NSMutableArray *)dataArray {
+    if (_dataArray == nil) {
+        _dataArray = [[NSMutableArray alloc]init];
+    }
+    return _dataArray;
 }
 
 #pragma mark - dataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"NTPopUpSelectorViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    NSMutableDictionary *data = self.dataArray[indexPath.row];
+    cell.textLabel.text = data[NTPopUpSelectorViewOptionText];
+    cell.imageView.image = [UIImage imageNamed:data[NTPopUpSelectorViewOptionImage]];
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.dataArray.count;
 }
 
 #pragma mark - delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (bubbleFrame.size.height - bubbleFrame.size.height * NTArrowAndTotalRate) / self.dataArray.count;
+}
 
 
 #pragma mark - methods
-
-
+- (void)clickMaskAction: (UIView *)maskView {
+    NSLog(@"33");
+}
 
 #pragma mark - API
++ (NTPopUpSelectorView *)popUpSelectorViewWithbubbleFrame :(CGRect)frame clickOption:(ClickOptionBlock)clickOptionBlock clickMask:(ClickMaskBlock)clickMaskBlock {
+    NTPopUpSelectorView *popUpSelectorView = [[self alloc] initWithBubbleFrame:frame];// 调用自身的init方法做初始化
+    
+    popUpSelectorView.clickOptionBlock = clickOptionBlock;
+    popUpSelectorView.clickMaskBlock = clickMaskBlock;
+    
+    return popUpSelectorView;
+}
 
+- (void)addOptionWihtText :(NSString *)text andImage :(NSString *)imageName {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[NTPopUpSelectorViewOptionText] = text;
+    dic[NTPopUpSelectorViewImageName] = imageName;
+    [self.dataArray addObject:dic];
+}
 
 @end
