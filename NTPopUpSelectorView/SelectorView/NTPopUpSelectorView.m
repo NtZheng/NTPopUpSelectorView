@@ -58,6 +58,7 @@
         _bubbleImageView = [[UIImageView alloc]initWithFrame:bubbleFrame];
         _bubbleImageView.image = [UIImage imageNamed:NTPopUpSelectorViewImageName];
         [_bubbleImageView addSubview:self.tableView];
+        _bubbleImageView.clipsToBounds = YES;
         _bubbleImageView.userInteractionEnabled = YES;
     }
     return _bubbleImageView;
@@ -139,8 +140,8 @@
 - (void)showSelectorViewWithAnimationInView :(UIView *)view frame :(CGRect)frame {
     
     self.bubbleImageView.frame = CGRectMake(bubbleFrame.origin.x, bubbleFrame.origin.y, 0, 0);
-    
-    [UIView animateWithDuration:2.0f animations:^{
+    self.bubbleImageView.layer.position = CGPointMake(bubbleFrame.origin.x + bubbleFrame.size.width, bubbleFrame.origin.y);
+    [UIView animateWithDuration:0.25f animations:^{
         self.bubbleImageView.frame = bubbleFrame;
     } completion:^(BOOL finished) {
         
