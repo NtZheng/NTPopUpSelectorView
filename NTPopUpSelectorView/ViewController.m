@@ -11,8 +11,6 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) NTPopUpSelectorView *myView;
-
 @end
 
 @implementation ViewController
@@ -20,7 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect frame = CGRectMake(100, 100, 50, 25);
+    button.frame = frame;
+    [button setTitle:@"测试" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(clickButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)clickButtonAction {
+    __block NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
         if (indexPath.row == 0) {
             NSLog(@"1");
         } else if (indexPath.row == 1) {
@@ -29,7 +37,7 @@
             NSLog(@"3");
         }
     } clickMask:^{
-        
+        [view removeFromSuperViewWithAnimation];
     }];
     
     [view addOptionWihtText:@"你好" andImage:nil];
@@ -37,12 +45,6 @@
     [view addOptionWihtText:@"你很好" andImage:nil];
     
     [view showSelectorViewWithAnimationInView:self.view frame:self.view.bounds];
-    
-    self.myView = view;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.myView removeFromSuperViewWithAnimation];
 }
 
 @end
