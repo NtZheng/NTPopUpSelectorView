@@ -142,6 +142,7 @@
     
     self.bubbleImageView.frame = CGRectMake(bubbleFrame.origin.x, bubbleFrame.origin.y, 0, 0);
     self.bubbleImageView.layer.position = CGPointMake(bubbleFrame.origin.x + bubbleFrame.size.width, bubbleFrame.origin.y);
+    self.bubbleImageView.layer.anchorPoint = CGPointMake(1, 0);
     [UIView animateWithDuration:0.25f animations:^{
         self.bubbleImageView.frame = bubbleFrame;
     } completion:^(BOOL finished) {
@@ -149,6 +150,15 @@
     }];
     self.frame = frame;
     [view addSubview:self];
+}
+
+- (void)removeFromSuperViewWithAnimation {
+    [self.maskView removeFromSuperview];
+    [UIView animateWithDuration:0.25f animations:^{
+        self.bubbleImageView.frame = CGRectMake(bubbleFrame.origin.x + bubbleFrame.size.width, bubbleFrame.origin.y, 0, 0);
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 @end

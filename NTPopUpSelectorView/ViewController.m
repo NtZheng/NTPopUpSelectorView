@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) NTPopUpSelectorView *myView;
+
 @end
 
 @implementation ViewController
@@ -35,6 +37,12 @@
     [view addOptionWihtText:@"你很好" andImage:nil];
     
     [view showSelectorViewWithAnimationInView:self.view frame:self.view.bounds];
+    
+    self.myView = view;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.myView removeFromSuperViewWithAnimation];
 }
 
 @end

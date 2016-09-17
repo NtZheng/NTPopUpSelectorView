@@ -45,5 +45,11 @@ typedef void(^ClickMaskBlock)();
  */
 - (void)showSelectorViewWithAnimationInView :(UIView *)view frame :(CGRect)frame;
 
+/**
+ *
+ *  Remove from superView
+ *
+ */
+- (void)removeFromSuperViewWithAnimation;
 
 @end
