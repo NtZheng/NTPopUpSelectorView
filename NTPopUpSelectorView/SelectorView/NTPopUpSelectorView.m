@@ -109,6 +109,7 @@
 #pragma mark - delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.clickOptionBlock(indexPath);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,7 +118,7 @@
 
 #pragma mark - methods
 - (void)clickMaskAction: (UIView *)maskView {
-    
+    self.clickMaskBlock();
 }
 
 #pragma mark - API

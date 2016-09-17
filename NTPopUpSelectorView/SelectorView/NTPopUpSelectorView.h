@@ -45,4 +45,5 @@ typedef void(^ClickMaskBlock)();
  */
 - (void)showSelectorViewWithAnimationInView :(UIView *)view frame :(CGRect)frame;
 
+
 @end
