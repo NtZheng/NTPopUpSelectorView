@@ -92,12 +92,11 @@
     }
     NSMutableDictionary *data = self.dataArray[indexPath.row];
     cell.textLabel.text = data[NTPopUpSelectorViewOptionText];
-    if (data[NTPopUpSelectorViewOptionImage] == nil || ((NSString *)data[NTPopUpSelectorViewImageName]).length == 0) {
+    if (data[NTPopUpSelectorViewOptionImage] == nil) {
         
     } else {
         cell.imageView.image = [UIImage imageNamed:data[NTPopUpSelectorViewOptionImage]];
     }
-    
     
     return cell;
 }
@@ -134,7 +133,7 @@
 - (void)addOptionWihtText :(NSString *)text andImage :(NSString *)imageName {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[NTPopUpSelectorViewOptionText] = text;
-    dic[NTPopUpSelectorViewImageName] = imageName;
+    dic[NTPopUpSelectorViewOptionImage] = imageName;
     [self.dataArray addObject:dic];
 }
 

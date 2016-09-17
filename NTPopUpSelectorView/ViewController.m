@@ -29,7 +29,7 @@
 
 - (void)clickButtonAction {
     
-    NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
+    __block NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
         if (indexPath.row == 0) {
             NSLog(@"1");
         } else if (indexPath.row == 1) {
@@ -41,7 +41,7 @@
         [view removeFromSuperViewWithAnimation];
     }];
     
-    [view addOptionWihtText:@"你好" andImage:nil];
+    [view addOptionWihtText:@"你好" andImage:@"popUpSelectorView"];
     [view addOptionWihtText:@"你不好吗" andImage:nil];
     [view addOptionWihtText:@"你很好" andImage:nil];
     
