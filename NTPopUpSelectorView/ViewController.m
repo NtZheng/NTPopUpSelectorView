@@ -41,9 +41,9 @@
         [view removeFromSuperViewWithAnimation];
     }];
     
-    [view addOptionWihtText:@"你好" andImage:@"popUpSelectorView"];
-    [view addOptionWihtText:@"你不好吗" andImage:nil];
-    [view addOptionWihtText:@"你很好" andImage:nil];
+    [view addOptionWihtText:@"你好"];
+    [view addOptionWihtText:@"你不好吗"];
+    [view addOptionWihtText:@"你很好"];
     
     [view showSelectorViewWithAnimationInView:self.view frame:self.view.bounds];
 }

@@ -11,7 +11,6 @@
 
 #define NTPopUpSelectorViewImageName @"popUpSelectorView"
 #define NTPopUpSelectorViewOptionText @"text"
-#define NTPopUpSelectorViewOptionImage @"image"
 #define NTArrowAndTotalRate 0.11
 
 @interface NTPopUpSelectorView() <UITableViewDataSource, UITableViewDelegate>
@@ -92,12 +91,6 @@
     }
     NSMutableDictionary *data = self.dataArray[indexPath.row];
     cell.textLabel.text = data[NTPopUpSelectorViewOptionText];
-    if (data[NTPopUpSelectorViewOptionImage] == nil) {
-        
-    } else {
-        cell.imageView.image = [UIImage imageNamed:data[NTPopUpSelectorViewOptionImage]];
-    }
-    
     return cell;
 }
 
@@ -130,10 +123,9 @@
     return popUpSelectorView;
 }
 
-- (void)addOptionWihtText :(NSString *)text andImage :(NSString *)imageName {
+- (void)addOptionWihtText :(NSString *)text {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[NTPopUpSelectorViewOptionText] = text;
-    dic[NTPopUpSelectorViewOptionImage] = imageName;
     [self.dataArray addObject:dic];
 }
 

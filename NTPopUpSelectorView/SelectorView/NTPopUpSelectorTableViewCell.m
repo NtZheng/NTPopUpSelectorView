@@ -12,11 +12,6 @@
 
 + (NTPopUpSelectorTableViewCell *)popUpSelectorTableViewCellWithRowHeight :(CGFloat) height style :(UITableViewCellStyle)style reuseIdentifier :(NSString *)reuseIdentifier isLastOne :(BOOL)isLastOne{
     NTPopUpSelectorTableViewCell *cell = [[self alloc]initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     if (isLastOne) {
         
     } else {
@@ -25,6 +20,16 @@
         [cell addSubview:bottomLineView];
     }
     return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor clearColor];
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
+    return self;
 }
 
 @end

@@ -30,10 +30,9 @@ typedef void(^ClickMaskBlock)();
  *  Add option
  *
  *  @param text                 添加的选项的名字
- *  @param frame                添加的选项的图片
  *
  */
-- (void)addOptionWihtText :(NSString *)text andImage :(NSString *)imageName;
+- (void)addOptionWihtText :(NSString *)text;
 
 /**
  *
