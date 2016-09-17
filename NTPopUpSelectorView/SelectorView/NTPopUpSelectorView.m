@@ -139,12 +139,13 @@
 }
 
 - (void)showSelectorViewWithAnimationInView :(UIView *)view frame :(CGRect)frame {
-    
     self.bubbleImageView.frame = CGRectMake(bubbleFrame.origin.x, bubbleFrame.origin.y, 0, 0);
     self.bubbleImageView.layer.position = CGPointMake(bubbleFrame.origin.x + bubbleFrame.size.width, bubbleFrame.origin.y);
     self.bubbleImageView.layer.anchorPoint = CGPointMake(1, 0);
+    self.maskView.alpha = 0;
     [UIView animateWithDuration:0.25f animations:^{
         self.bubbleImageView.frame = bubbleFrame;
+        self.maskView.alpha = 1;
     } completion:^(BOOL finished) {
         
     }];
@@ -153,11 +154,11 @@
 }
 
 - (void)removeFromSuperViewWithAnimation {
-    [self.maskView removeFromSuperview];
     [UIView animateWithDuration:0.25f animations:^{
+        self.maskView.alpha = 0;
         self.bubbleImageView.frame = CGRectMake(bubbleFrame.origin.x + bubbleFrame.size.width, bubbleFrame.origin.y, 0, 0);
     } completion:^(BOOL finished) {
-        
+        [self removeFromSuperview];
     }];
 }
 

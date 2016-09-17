@@ -28,7 +28,8 @@
 }
 
 - (void)clickButtonAction {
-    __block NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
+    
+    NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
         if (indexPath.row == 0) {
             NSLog(@"1");
         } else if (indexPath.row == 1) {
