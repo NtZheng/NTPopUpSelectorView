@@ -2,7 +2,7 @@
 ####这是一个弹出对话框式的View####
 
 
-具体用法如下：
+- 具体用法如下：
 
 ```objc
 
@@ -29,3 +29,6 @@
     
 ```
 
+- 示意动图
+
+/Users/Nineteen/Desktop/Untitled.gif

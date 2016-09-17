@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(100, 100, 50, 25);
+    CGRect frame = CGRectMake(200, 100, 50, 25);
     button.frame = frame;
     [button setTitle:@"测试" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -29,7 +29,7 @@
 
 - (void)clickButtonAction {
     
-    __block NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) {
+    __block NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(145, 130, 100, 160) clickOption:^(NSIndexPath *indexPath) {
         if (indexPath.row == 0) {
             NSLog(@"1");
         } else if (indexPath.row == 1) {
@@ -41,9 +41,9 @@
         [view removeFromSuperViewWithAnimation];
     }];
     
-    [view addOptionWihtText:@"你好"];
-    [view addOptionWihtText:@"你不好吗"];
-    [view addOptionWihtText:@"你很好"];
+    [view addOptionWihtText:@"NEU"];
+    [view addOptionWihtText:@"Nineteen"];
+    [view addOptionWihtText:@"郑祯"];
     
     [view showSelectorViewWithAnimationInView:self.view frame:self.view.bounds];
 }
