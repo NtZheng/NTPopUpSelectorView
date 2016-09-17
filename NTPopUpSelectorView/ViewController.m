@@ -29,16 +29,17 @@
 
 - (void)clickButtonAction {
     
-    __block NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(145, 130, 100, 160) clickOption:^(NSIndexPath *indexPath) {
+    NTPopUpSelectorView *view = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(145, 130, 100, 160) clickOption:^(NSIndexPath *indexPath, NTPopUpSelectorView *popUpSelectorView) {
         if (indexPath.row == 0) {
             NSLog(@"1");
+            [popUpSelectorView removeFromSuperViewWithAnimation];
         } else if (indexPath.row == 1) {
             NSLog(@"2");
         } else if (indexPath.row == 2) {
             NSLog(@"3");
         }
-    } clickMask:^{
-        [view removeFromSuperViewWithAnimation];
+    } clickMask:^(NTPopUpSelectorView *popUpSelectorView){
+        [popUpSelectorView removeFromSuperViewWithAnimation];
     }];
     
     [view addOptionWihtText:@"NEU"];

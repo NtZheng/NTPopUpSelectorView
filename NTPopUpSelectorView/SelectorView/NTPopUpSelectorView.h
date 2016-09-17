@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^ClickOptionBlock)(NSIndexPath *indexPath);
-typedef void(^ClickMaskBlock)();
+@class NTPopUpSelectorView;
+
+typedef void(^ClickOptionBlock)(NSIndexPath *indexPath, NTPopUpSelectorView *popUpSelectorView);
+typedef void(^ClickMaskBlock)(NTPopUpSelectorView *popUpSelectorView);
 
 @interface NTPopUpSelectorView : UIView
 
