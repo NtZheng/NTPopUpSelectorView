@@ -31,4 +31,4 @@
 
 - 示意动图
 
-/Users/Nineteen/Desktop/Untitled.gif
+![示意图](/Users/Nineteen/Documents/Framework/NTPopUpSelectorView/示意图.gif)
