@@ -7,16 +7,17 @@
 ```objc
 
 	//1、初始化
-	__block NTPopUpSelectorView *selectorView = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath) { // 这里的frame为显示的气泡的frame
+	NTPopUpSelectorView *selectorView = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath, NTPopUpSelectorView *popUpSelectorView) { // 这里的frame为显示的气泡的frame
         if (indexPath.row == 0) {
             NSLog(@"1");
+            [popUpSelectorView removeFromSuperViewWithAnimation];
         } else if (indexPath.row == 1) {
             NSLog(@"2");
         } else if (indexPath.row == 2) {
             NSLog(@"3");
         }
-    } clickMask:^{
-        [selectorView removeFromSuperViewWithAnimation];
+    } clickMask:^(NTPopUpSelectorView *popUpSelectorView){
+        [popUpSelectorView removeFromSuperViewWithAnimation];
     }];
     
     // 2、添加数据
