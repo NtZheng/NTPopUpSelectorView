@@ -6,7 +6,7 @@
 
 ```objc
 
-	//1、初始化
+    //1、初始化
 	NTPopUpSelectorView *selectorView = [NTPopUpSelectorView popUpSelectorViewWithbubbleFrame:CGRectMake(100, 100, 100, 200) clickOption:^(NSIndexPath *indexPath, NTPopUpSelectorView *popUpSelectorView) { // 这里的frame为显示的气泡的frame
         if (indexPath.row == 0) {
             NSLog(@"1");
